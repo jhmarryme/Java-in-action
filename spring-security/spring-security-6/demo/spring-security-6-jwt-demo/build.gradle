@@ -1,0 +1,75 @@
+plugins {
+    id 'java'
+	id 'org.springframework.boot' version '3.3.2'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+allprojects {
+    // 配置项目信息
+    group = 'org.example'
+    version = '0.0.1-SNAPSHOT'
+    // 配置字符编码
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+    java {
+        sourceCompatibility = '17'
+        targetCompatibility = '17'
+    }
+    //仓库配置
+    repositories {
+        //本地
+        mavenLocal()
+        //阿里仓库
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        //公司仓库。必须用：https。Gradle默认情况下不允许使用不安全的协议，以提高安全性。
+//        maven { url 'https://******:****/repository/maven-public/' }
+        //中央仓库
+        mavenCentral()
+    }
+}
+
+//配置所有子模块
+subprojects {
+    apply plugin: 'java'
+    //所有子模块都是springboot项目，如不是，不能打包。
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    //这里可以导入公共的依赖
+    dependencies {
+//        implementation 'org.springframework.boot:spring-boot-starter'
+        // compileOnly：这样做可以确保Lombok在编译时可用，但不会包含在最终的构建产物中，从而减小构建产物的大小。
+        // api：依赖可以传递给子模块
+        // compileOnlyApi：仅编译时可用，不包含在构建产物中，并且可以传递给子模块
+        compileOnly 'org.projectlombok:lombok'
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//        annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+        // 表示将Lombok库作为注解处理器导入。
+        annotationProcessor 'org.projectlombok:lombok'
+//        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    //所有子模块的-依赖版本管理
+    dependencyManagement {
+        dependencies {
+            dependency 'cn.hutool:hutool-all:5.8.27'
+            dependency "org.apache.commons:commons-lang3:3.5"
+            dependency "com.google.code.gson:gson:2.10.1"
+        }
+    }
+
+    //使用 gradle打包工具
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+    tasks.named('test') {
+        useJUnitPlatform()
+    }
+}

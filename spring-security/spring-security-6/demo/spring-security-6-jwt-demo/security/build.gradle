@@ -1,0 +1,7 @@
+//配置所有子模块
+subprojects {
+    //这里可以导入公共的依赖
+    dependencies {
+
+    }
+}

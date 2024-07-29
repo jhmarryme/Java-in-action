@@ -1,0 +1,39 @@
+### 匿名接口
+GET {{base-url}}/api/v1/no-auth/hello
+Authorization: Bearer {{auth_token}}
+
+### 注册接口
+POST {{auth-url}}/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "w",
+  "lastName": "ww",
+  "email": "1@gmail.com",
+  "password": "changeme"
+}
+
+### 登录接口, 登录后自动设置token
+POST {{auth-url}}/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "email": "1@gmail.com",
+  "password": "changeme"
+}
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+###
+GET {{base-url}}/api/v1/resource/sayHello
+Authorization: Bearer {{auth_token}}
+
+###
+GET {{base-url}}/api/v1/resource/currentUser
+Authorization: Bearer {{auth_token}}
+
+###
+GET {{base-url}}/api/v1/resource/currentAdminUser
+Authorization: Bearer {{auth_token}}

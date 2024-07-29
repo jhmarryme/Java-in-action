@@ -1,0 +1,9 @@
+rootProject.name = 'spring-security-6-jwt-demo'
+
+include 'auth-center'
+include 'resource'
+
+
+include 'security'
+include ':security:security-core'
+include ':security:security-full'

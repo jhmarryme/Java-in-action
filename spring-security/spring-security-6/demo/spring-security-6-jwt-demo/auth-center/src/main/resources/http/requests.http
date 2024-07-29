@@ -1,0 +1,31 @@
+###
+POST {{base-url}}/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "firstName": "w",
+  "lastName": "ww",
+  "email": "1@gmail.com",
+  "password": "changeme"
+}
+
+###
+POST {{base-url}}/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "email": "1@gmail.com",
+  "password": "changeme"
+}
+
+> {%
+    client.global.set("auth_token", response.body.token);
+%}
+
+###
+GET {{base-url}}/api/v1/resource/currentUser
+Authorization: Bearer {{auth_token}}
+
+###
+GET {{base-url}}/api/v1/resource/user
+Authorization: Bearer {{auth_token}}

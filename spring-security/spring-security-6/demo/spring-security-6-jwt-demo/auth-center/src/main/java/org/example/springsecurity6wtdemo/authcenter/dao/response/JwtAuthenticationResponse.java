@@ -1,0 +1,14 @@
+package org.example.springsecurity6wtdemo.authcenter.dao.response;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class JwtAuthenticationResponse {
+    private String token;
+}

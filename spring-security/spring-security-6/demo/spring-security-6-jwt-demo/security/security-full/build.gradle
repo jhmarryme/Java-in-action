@@ -1,0 +1,10 @@
+dependencies {
+    compileOnly 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.apache.commons:commons-lang3'
+    compileOnly 'org.springframework.boot:spring-boot-starter-web'
+    implementation project(':security:security-core')
+}
+
+tasks.register('prepareKotlinBuildScriptModel') {
+
+}
