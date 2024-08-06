@@ -15,4 +15,4 @@ gradle：8.x
 ## 测试入口
 
 集成测试入口：
-/home/jhmarryme/develop/code/2024/Java-in-action/spring-security/oauth/official-samples/6-3-x/authorization-server/src/test/java/org/example/authorizationserver/integTest/AuthorizationServerApplicationITests.java
+src/test/java/org/example/authorizationserver/integTest/AuthorizationServerApplicationITests.java

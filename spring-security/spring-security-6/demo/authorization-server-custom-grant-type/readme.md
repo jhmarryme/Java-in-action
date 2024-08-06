@@ -4,7 +4,7 @@
 
 只改动了build.gradle使其能本地运行，分支为6.3.x
 
-主要是authorization-server的一些基础用法
+authorization-server的拓展自定义授权类型demo
 
 ## 运行环境
 
@@ -15,4 +15,4 @@ gradle：8.x
 ## 测试入口
 
 集成测试入口：
-/home/jhmarryme/develop/code/2024/Java-in-action/spring-security/oauth/official-samples/6-3-x/authorization-server/src/test/java/org/example/authorizationserver/integTest/AuthorizationServerApplicationITests.java
+src/test/java/org/example/authorizationserver/integTest/AuthorizationServerCustomGrantTypeApplicationTests.java
