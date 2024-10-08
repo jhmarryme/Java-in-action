@@ -1,0 +1,6 @@
+
+###
+GET http://localhost:8888/test?id=1
+
+###
+GET http://localhost:8888/test?id=xxx
